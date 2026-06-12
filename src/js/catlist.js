@@ -1,124 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cat Breeds - CatFacts</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="breeds.css">
-</head>
-<body>
+const CAT_API_KEY = "live_pKg7az242OM2J74UFGGEEiidBpX4ObIQ1xByBjh73T1GCeGDjZ2WLf0CeYoptHwX";
 
-    <!-- HEADER -->
-    <header>
-        <div class="logo">
-            <img src="images/logo.png" alt="CatFacts Logo">
-            <h1>CatFacts</h1>
-        </div>
+// Cat image fetch (single featured image)
+async function fetchFeaturedCat() {
+  const response = await fetch(
+    "https://api.thecatapi.com/v1/images/search",
+    {
+      headers: {
+        "x-api-key": CAT_API_KEY,
+      },
+    }
+  );
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="facts.html" class="active">Daily Facts</a>
-            <a href="breeds.html">Cat Breeds</a>
-            <a href="about.html">About</a>
-        </nav>
-    </header>
+  const data = await response.json();
+  return data[0].url;
+}
 
-    <!-- MAIN CONTENT -->
-    <main>
+// Cat gallery fetch (multiple images)
+async function fetchCatGallery() {
+  const response = await fetch(
+    "https://api.thecatapi.com/v1/images/search?limit=8",
+    {
+      headers: {
+        "x-api-key": CAT_API_KEY,
+      },
+    }
+  );
 
-        <h2 class="page-heading">Cat Breeds</h2>
+  const data = await response.json();
+  return data;
+}
 
-        <!-- Grid: cards will be injected here by JavaScript -->
-        <div class="breeds-grid" id="breeds-grid">
+// Cat fact fetch
+async function fetchCatFact() {
+  const response = await fetch("https://catfact.ninja/fact");
+  const data = await response.json();
+  return data.fact;
+}
 
-            <!-- Each card below is a placeholder showing the structure.
-                 JavaScript will remove these and replace with real data from the API -->
+// Render featured image
+function renderFeaturedCat(url) {
+  const img = document.getElementById("cat-image");
+  img.src = url;
+}
 
-            <div class="breed-card">
-                <div class="card-image"></div>
-                <p class="card-name">Loading...</p>
-            </div>
+// Render fact
+function renderFact(fact) {
+  const factEl = document.getElementById("cat-fact");
+  factEl.textContent = fact;
+}
 
-            <div class="breed-card">
-                <div class="card-image"></div>
-                <p class="card-name">Loading...</p>
-            </div>
+// Render gallery
+function renderGallery(images) {
+  const gallery = document.getElementById("gallery");
 
-            <div class="breed-card">
-                <div class="card-image"></div>
-                <p class="card-name">Loading...</p>
-            </div>
+  gallery.innerHTML = "";
 
-            <div class="breed-card">
-                <div class="card-image"></div>
-                <p class="card-name">Loading...</p>
-            </div>
+  images.forEach((item) => {
+    const img = document.createElement("img");
+    img.src = item.url;
+    img.alt = "Cat image";
+    gallery.appendChild(img);
+  });
+}
 
-            <div class="breed-card">
-                <div class="card-image"></div>
-                <p class="card-name">Loading...</p>
-            </div>
+// Load everything at once
+async function loadCats() {
+  try {
+    const [featured, gallery, fact] = await Promise.all([
+      fetchFeaturedCat(),
+      fetchCatGallery(),
+      fetchCatFact(),
+    ]);
 
-            <div class="breed-card">
-                <div class="card-image"></div>
-                <p class="card-name">Loading...</p>
-            </div>
+    renderFeaturedCat(featured);
+    renderGallery(gallery);
+    renderFact(fact);
+  } catch (err) {
+    console.error("Error loading cats:", err);
+  }
+}
 
-            <div class="breed-card">
-                <div class="card-image"></div>
-                <p class="card-name">Loading...</p>
-            </div>
+// Button interaction
+function setupButton() {
+  const btn = document.getElementById("discover-btn");
 
-            <div class="breed-card">
-                <div class="card-image"></div>
-                <p class="card-name">Loading...</p>
-            </div>
+  btn.addEventListener("click", () => {
+    loadCats();
+  });
+}
 
-            <div class="breed-card">
-                <div class="card-image"></div>
-                <p class="card-name">Loading...</p>
-            </div>
-
-            <div class="breed-card">
-                <div class="card-image"></div>
-                <p class="card-name">Loading...</p>
-            </div>
-
-            <div class="breed-card">
-                <div class="card-image"></div>
-                <p class="card-name">Loading...</p>
-            </div>
-
-            <div class="breed-card">
-                <div class="card-image"></div>
-                <p class="card-name">Loading...</p>
-            </div>
-
-            <div class="breed-card">
-                <div class="card-image"></div>
-                <p class="card-name">Loading...</p>
-            </div>
-
-            <div class="breed-card">
-                <div class="card-image"></div>
-                <p class="card-name">Loading...</p>
-            </div>
-
-            <div class="breed-card">
-                <div class="card-image"></div>
-                <p class="card-name">Loading...</p>
-            </div>
-
-        </div>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2025 CatFacts</p>
-    </footer>
-
-    <script src="breeds.js"></script>
-</body>
-</html>
+// Init
+document.addEventListener("DOMContentLoaded", () => {
+  loadCats();
+  setupButton();
+});
