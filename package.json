@@ -1,0 +1,27 @@
+{
+  "name": "catfact-project",
+  "version": "1.0.0",
+  "description": "A website for lovers of cat and their breeds",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delodcyber/catFact-project.git"
+  },
+  "author": "John Adeloye",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/delodcyber/catFact-project/issues"
+  },
+  "homepage": "https://github.com/delodcyber/catFact-project#readme",
+  "dependencies": {
+    "vite": "^8.0.16"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.4.1",
+    "globals": "^17.6.0"
+  }
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CatFacts</title>
+    <link rel="stylesheet" href="public/style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="CatFacts Logo">
+            <h1>CatFacts</h1>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="facts.html">Daily Facts</a>
+            <a href="breeds.html">Cat Breeds</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- LEFT: Image Section -->
+        <div class="image-section">
+            <div class="cat-image" id="cat-image">
+                <!-- Cat image will be loaded here by JavaScript -->
+            </div>
+
+            <div class="carousel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <!-- RIGHT: Fact Section -->
+        <div class="fact-section">
+            <h2>Did you know?</h2>
+
+            <p id="cat-fact">Loading a cat fact for you...</p>
+
+            <!-- Pop Up Card -->
+            <div class="popup" id="popup">
+                <button class="close-btn" id="close-btn">X</button>
+                <p>Want to read another fact?</p>
+                <button id="next-btn">Get another fact</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 CatFacts</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
