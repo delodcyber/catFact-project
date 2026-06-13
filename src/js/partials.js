@@ -10,9 +10,9 @@ export async function loadPartial(id, path) {
 }
 
 export async function loadAllPartials() {
-    await loadPartial('site-head', '/public/partials/head.html');
-    await loadPartial('site-header', '/public/partials/header.html');
-    await loadPartial('site-footer', '/public/partials/footer.html');
+    await loadPartial('site-head', '/partials/head.html');
+    await loadPartial('site-header', '/partials/header.html');
+    await loadPartial('site-footer', '/partials/footer.html');
 }
 
 // Mobile menu toggle
