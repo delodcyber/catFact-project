@@ -1,47 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HEAD charsets (loaded from partial) -->
+    <div id = "site-head"></div>
     <title>CatFacts Website</title>
-    <link rel="stylesheet" href="src/css/main.css">
 </head>
 <body>
-
     <!-- HEADER (loaded from partial) -->
     <div id="site-header"></div>
-
-    <!-- MAIN CONTENT -->
     <main>
-
-        <!-- LEFT: Image Section (coverflow carousel) -->
-        <div class="image-section">
-            <div class="cat-image" id="carousel">
-                <!-- Coverflow carousel will be built here by JavaScript -->
-                <div class="coverflow" id="coverflow"></div>
-            </div>
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
         </div>
-
-        <!-- RIGHT: Info Section -->
-        <div class="fact-section" id="info-panel">
-            <h2 id="info-title">Welcome to CatFacts</h2>
-            <p id="cat-fact">Loading a cat fact for you...</p>
-
-            <!-- Subscribe Popup -->
-            <div class="popup" id="subscribe-popup">
-                <button class="close-btn" id="popup-close">X</button>
-                <p class="popup-lead">Subscribe to our newsletter for daily cat facts and beautiful cat photos.</p>
-                <div class="subscribe-form">
-                    <input type="email" id="subscribe-email" placeholder="Your email address">
-                    <button id="subscribe-btn">Subscribe</button>
+        <section class="hero-slider">
+            <div class="slide active">
+                <img src="" id="slide1" alt="Cat">
+                <div class="slide-content">
+                    <h1>Discover Beautiful Cats</h1>
+                    <p>Explore breeds, facts and amazing feline photography.</p>
                 </div>
             </div>
 
-            <button id="open-subscribe" class="cta-primary">Subscribe</button>
-        </div>
+            <div class="slide">
+                <img src="" id="slide2" alt="Cat">
+                <div class="slide-content">
+                    <h1>Learn Fascinating Facts</h1>
+                    <p>Thousands of interesting facts about your favorite pets.</p>
+                </div>
+            </div>
 
+            <div class="slide">
+                <img src="" id="slide3" alt="Cat">
+                <div class="slide-content">
+                    <h1>Find Your Favorite Breed</h1>
+                    <p>Compare temperaments, origins and personalities.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="fact-section">
+            <h2>Fact of the Day</h2>
+            <div class="fact-card">
+                <p id="daily-fact">
+                    Loading fact...
+                </p>
+            </div>
+        </section>
+
+        <section class="breed-highlight">
+            <h2>Featured Breed</h2>
+            <div class="breed-card">
+                <img id="breed-image" src="" alt="Breed">
+                <div class="breed-info">
+                    <h3 id="breed-name">Loading...</h3>
+                    <p id="breed-description"></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="stat-card">
+                <h3 id="breed-count">0</h3>
+                <p>Cat Breeds</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>1000+</h3>
+                <p>Facts Available</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Unlimited</h3>
+                <p>Cat Photos</p>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Ready To Explore?</h2>
+
+            <a href="/explore-cats/" class="btn">
+                Explore Cats
+            </a>
+        </section>
+        <section class="gallery-section">
+            <h2>Cat Gallery</h2>
+            <div id="gallery"></div>
+        </section>
     </main>
-
     <!-- FOOTER (loaded from partial) -->
     <div id="site-footer"></div>
 
