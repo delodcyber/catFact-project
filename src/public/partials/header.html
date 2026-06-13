@@ -1,15 +1,25 @@
 <header>
-	<div class="logo">
-		<a href="/"><img src="/src/public/images/cat-logo.png" alt="CatFacts Logo"></a>
-		<h1><a href="/">CatFacts</a></h1>
-	</div>
-	<nav>
-		<ul class="nav-links">
-			<li><a href="/">Home</a></li>
-			<li><a href="/src/explore-cats/explore-cat.html">Explore Cats</a></li>
-			<li><a href="/src/breeds/breeds.html">Breeds</a></li>
-			<li><a href="/src/favorite/favorite.html">Favorites</a></li>
-		</ul>
-	</nav>
+    <nav class="navbar">
+
+        <a href="/" class="logo">
+            <img src="/src/public/images/cat-logo2.jpeg" alt="CatFacts Logo">
+            <span>CatFacts</span>
+        </a>
+
+        <!-- Hamburger button (mobile only) -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="/" class="active">Home</a></li>
+            <li><a href="/explore-cats/">Explore Cats</a></li>
+            <li><a href="/breeds/">Breeds</a></li>
+            <li><a href="/about/">About</a></li>
+        </ul>
+
+    </nav>
 </header>
 

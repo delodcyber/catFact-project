@@ -1,15 +1,6 @@
-// Utility: load HTML partials into placeholders
-async function loadPartial(id, path) {
-  try {
-    const res = await fetch(path);
-    if (!res.ok) throw new Error('Failed to load ' + path);
-    const html = await res.text();
-    document.getElementById(id).innerHTML = html;
-  } catch (err) {
-    console.error(err);
-  }
-}
+import { loadAllPartials } from './partials.js';
 
+// ─── DISCOVER NEW CAT ─────────────────────────────────────────────────────────
 const CAT_API_KEY = 'live_pKg7az242OM2J74UFGGEEiidBpX4ObIQ1xByBjh73T1GCeGDjZ2WLf0CeYoptHwX';
 
 async function fetchFeaturedCat() {
@@ -20,19 +11,20 @@ async function fetchFeaturedCat() {
   return data; // return the full array now, not just data[0].url
 }
 
-async function fetchCatGallery() {
-  const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=8', {
+async function fetchCatFact() {
+  const response = await fetch('https://catfact.ninja/fact');
+  const data = await response.json();
+  return data.fact;
+}
+
+async function fetchAllBreeds() {
+  const response = await fetch('https://api.thecatapi.com/v1/breeds', {
     headers: { 'x-api-key': CAT_API_KEY }
   });
   const data = await response.json();
   return data;
 }
 
-async function fetchCatFact() {
-  const response = await fetch('https://catfact.ninja/fact');
-  const data = await response.json();
-  return data.fact;
-}
 function showLoading() {
   document.getElementById("loading").classList.remove("hidden");
 }
@@ -53,15 +45,8 @@ function renderFact(fact) {
   document.getElementById('daily-fact').textContent = fact;
 }
 
-function renderGallery(images) {
-  const gallery = document.getElementById('gallery');
-  gallery.innerHTML = '';
-  images.forEach((item) => {
-    const img = document.createElement('img');
-    img.src = item.url;
-    img.alt = 'Cat image';
-    gallery.appendChild(img);
-  });
+function renderBreedCount(count) {
+  document.getElementById('breed-count').textContent = count;
 }
 
 // Fetch a random breed
@@ -96,15 +81,15 @@ async function loadCats() {
   try {
     showLoading();
 
-    const [featured, gallery, fact] = await Promise.all([
+    const [featured, fact, breeds] = await Promise.all([
       fetchFeaturedCat(),
-      fetchCatGallery(),
       fetchCatFact(),
+      fetchAllBreeds(),
     ]);
 
     renderFeaturedCat(featured);
-    renderGallery(gallery);
     renderFact(fact);
+    renderBreedCount(breeds.length);
     await renderFeaturedBreed();
   } catch (err) {
     console.error("Error loading cats:", err);
@@ -115,9 +100,6 @@ async function loadCats() {
 
 // Single DOMContentLoaded — entry point
 document.addEventListener('DOMContentLoaded', async () => {
-  await loadPartial('site-header', 'src/public/partials/header.html');
-  await loadPartial('site-footer', 'src/public/partials/footer.html');
-  await loadPartial('site-head', 'src/public/partials/head.html');
-
-  loadCats();
+    await loadAllPartials();
+    await loadCats();
 });

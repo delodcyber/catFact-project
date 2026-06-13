@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "A website for lovers of cat and their breeds",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "vite"
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "dev": "vite",
+    "lint": "eslint . --ext .js,.html"
   },
   "repository": {
     "type": "git",
@@ -17,6 +22,7 @@
   },
   "homepage": "https://github.com/delodcyber/catFact-project#readme",
   "dependencies": {
+    "lint": "^1.2.2",
     "vite": "^8.0.16"
   },
   "devDependencies": {

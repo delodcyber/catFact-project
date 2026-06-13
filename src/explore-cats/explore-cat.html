@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <div id="site-head"></div>
+    <title>Explore Cats | CatFacts</title>
+    <link rel="stylesheet" href="/src/css/main.css">
+    <link rel="stylesheet" href="/src/css/explore-cats.css">
+</head>
+<body>
+
+    <!-- SPINNER -->
+    <div id="loading" class="hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- HEADER -->
+    <div id="site-header"></div>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero">
+            <h1>Explore Amazing Cats</h1>
+            <p>Discover beautiful cat photos, learn fascinating facts, and find your next favorite breed.</p>
+            <button id="discover-btn">Discover New Cats</button>
+        </section>
+
+        <!-- BREED SEARCH -->
+        <section class="search-section">
+            <label for="breed-select">Search by Breed</label>
+            <select id="breed-select">
+                <!-- Options injected by JavaScript -->
+            </select>
+        </section>
+
+        <!-- FEATURED CAT + FACT -->
+        <section class="featured-cat">
+            <div class="cat-image-container">
+                <img id="cat-image" src="" alt="Random Cat">
+            </div>
+
+            <div class="cat-fact-container">
+                <h2>Cat Fact</h2>
+                <p id="cat-fact">Loading a cat fact...</p>
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section class="gallery-section">
+            <div class="section-heading">
+                <h2>Cat Gallery</h2>
+                <p>Click "See More Cats" to load additional photos.</p>
+            </div>
+            <div id="gallery" class="gallery">
+            </div>
+
+            <!-- See More Button -->
+            <div class="see-more-wrapper">
+                <button id="see-more-btn" class="hidden">See More Cats</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <div id="site-footer"></div>
+    <script type="module" src="/src/js/explore-cat.js"></script>
+</body>
+</html>
