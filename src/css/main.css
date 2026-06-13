@@ -20,12 +20,18 @@ body{
 }
 
 /* ─── NAVBAR ─────────────────────────────────────────────────────── */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
 .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
 }
  
 .logo img {
@@ -38,16 +44,6 @@ body{
     font-size: 22px;
     color: #333333;
     text-decoration: none;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    max-width: 600px;
-    margin: 0 auto;
-    justify-content:space-between;
-    align-items:center;
-    padding:2rem 1rem;
 }
  
 nav a {
@@ -63,17 +59,16 @@ nav a:hover {
 }
  
 nav a.active {
-    color: #d85a30;
     font-weight: bold;
-    border-bottom: 2px solid #d85a30;
 }
 
-.nav-links{
-    display:flex;
-    list-style:none;
-    gap:2rem;
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-
 
 .hero-slider{
     height:75vh;
