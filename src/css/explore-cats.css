@@ -8,19 +8,6 @@
     --white: #ffffff;
 }
 
-/* ─── RESET ──────────────────────────────────────────────────────── */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f4f4;
-    color: var(--dark);
-    line-height: 1.6;
-}
 
 /* ─── SPINNER ────────────────────────────────────────────────────── */
 #loading {

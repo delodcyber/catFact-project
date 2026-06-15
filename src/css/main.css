@@ -6,17 +6,17 @@
     --dark:#01161E;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    font-family:'Poppins',sans-serif;
-    background:var(--secondary);
-    color:var(--dark);
-    line-height:1.6;
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #e4d5eb;
+    color: var(--dark);
+    line-height: 1.6;
 }
 
 /* ─── NAVBAR ─────────────────────────────────────────────────────── */

@@ -1,4 +1,4 @@
-import { loadAllPartials setupHamburger } from './partials.js';
+import { loadAllPartials, setupHamburger } from './partials.js';
 
 // ─── DISCOVER NEW CAT ─────────────────────────────────────────────────────────
 const CAT_API_KEY = 'live_pKg7az242OM2J74UFGGEEiidBpX4ObIQ1xByBjh73T1GCeGDjZ2WLf0CeYoptHwX';
