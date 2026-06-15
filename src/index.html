@@ -4,7 +4,7 @@
     <!-- HEAD charsets (loaded from partial) -->
     <div id = "site-head"></div>
     <link rel="stylesheet" href="/css/main.css">
-    <title>Homepage</title>
+    <title>Homepage | CatFacts</title>
 </head>
 <body>
     <!-- HEADER (loaded from partial) -->
@@ -39,24 +39,53 @@
             </div>
         </section>
 
-        <section class="fact-section">
-            <h2>Fact of the Day</h2>
-            <div class="fact-card">
-                <p id="daily-fact">
-                    Loading fact...
-                </p>
-            </div>
-        </section>
+        <section class="home-content">
 
-        <section class="breed-highlight">
-            <h2>Featured Breed</h2>
-            <div class="breed-card">
-                <img id="breed-image" src="" alt="Breed">
-                <div class="breed-info">
-                    <h3 id="breed-name">Loading...</h3>
-                    <p id="breed-description"></p>
+        <!-- FEATURED BREED -->
+        <article>
+            <div class="featured-card">
+            <img id="featured-image" src="" alt="Featured cat breed" />
+
+            <div class="featured-copy">
+                <p id="featured-description"></p>
+
+                <dl class="breed-meta">
+                <div>
+                    <dt>Origin</dt>
+                    <dd id="featured-origin"></dd>
                 </div>
+
+                <div>
+                    <dt>Temperament</dt>
+                    <dd id="featured-temperament"></dd>
+                </div>
+
+                <div>
+                    <dt>Lifespan</dt>
+                    <dd id="featured-life"></dd>
+                </div>
+
+                <div>
+                    <dt>Weight</dt>
+                    <dd id="featured-weight"></dd>
+                </div>
+                </dl>
             </div>
+            </div>
+        </article>
+
+        <!-- CAT FACT -->
+        <aside class="fact-card">
+            <div class="section-head">
+            <div>
+                <p class="eyebrow">Cat Fact</p>
+                <h2>Random fact</h2>
+            </div>
+            </div>
+
+            <p id="cat-fact">Loading a fact...</p>
+        </aside>
+
         </section>
 
         <section class="stats-section">

@@ -164,6 +164,103 @@ nav a.active {
     border-radius:12px;
 }
 
+.home-feature{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2rem;
+    padding:4rem 2rem;
+}
+
+.home-content{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:2rem;
+  padding:4rem 2rem;
+  align-items:start;
+}
+
+/* ---------------- FEATURED CARD ---------------- */
+
+.featured-card{
+  display:grid;
+  grid-template-columns:400px 1fr;
+  gap:2rem;
+  background:white;
+  padding:1.5rem;
+  border-radius:12px;
+}
+
+.featured-card img{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.featured-copy{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+
+/* ---------------- BREED META ---------------- */
+
+.breed-meta{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1rem;
+  margin-top:1rem;
+}
+
+.breed-meta dt{
+  font-size:.75rem;
+  font-weight:700;
+  color:#124559;
+  text-transform:uppercase;
+}
+
+.breed-meta dd{
+  margin:0;
+  color:#01161E;
+  font-weight:600;
+}
+
+/* ---------------- FACT CARD ---------------- */
+
+.fact-card{
+  background:white;
+  padding:2rem;
+  border-radius:12px;
+  border-left:6px solid #FE5F55;
+}
+
+.section-head{
+  margin-bottom:1rem;
+}
+
+.eyebrow{
+  font-size:.75rem;
+  text-transform:uppercase;
+  color:#124559;
+  font-weight:700;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media(max-width:768px){
+  .home-content{
+    grid-template-columns:1fr;
+  }
+
+  .featured-card{
+    grid-template-columns:1fr;
+  }
+
+  .breed-meta{
+    grid-template-columns:1fr;
+  }
+}
+
 .stats-section{
     display:grid;
     grid-template-columns:repeat(3,1fr);
