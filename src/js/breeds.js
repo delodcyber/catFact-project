@@ -1,3 +1,5 @@
+import { loadAllPartials, setupHamburger } from './partials';
+
 const CAT_API_KEY = 'live_pKg7az242OM2J74UFGGEEiidBpX4ObIQ1xByBjh73T1GCeGDjZ2WLf0CeYoptHwX';
 
 const els = {
@@ -160,7 +162,10 @@ function setupEvents() {
   els.refreshBtn.addEventListener("click", loadPage);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+// ─── ENTRY POINT ─────────────────────────────────────────────────────────────
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadAllPartials();
+  setupHamburger();
   setupEvents();
   loadPage();
 });
