@@ -4,17 +4,75 @@
     <!-- HEAD charsets (loaded from partial) -->
     <div id = "site-head"></div>
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/breeds.css">
     <title>Breeds | CatFacts</title>
 </head>
 <body>
     <div id="site-header"></div>
+    <main class="page">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Breed Explorer</p>
+          <h1>Find the cat breed that fits your style.</h1>
+          <p>
+            Browse temperament, origin, lifespan, and breed details from The Cat API.
+          </p>
 
-    <main>
-        <h1>Breeds</h1>
-        <p>Breeds content coming soon.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#breed-grid">Browse Breeds</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <h2>Quick Breed Stats</h2>
+          <div class="stats">
+            <article>
+              <span id="breed-count">0</span>
+              <p>Breeds</p>
+            </article>
+            <article>
+              <span id="avg-lifespan">0</span>
+              <p>Avg. Lifespan</p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="toolbar" aria-label="Breed tools">
+        <div class="search-wrap">
+          <label class="sr-only" for="breed-search">Search breeds</label>
+          <input id="breed-search" type="search" placeholder="Search breed, origin, or temperament..." />
+        </div>
+
+        <div class="filters">
+          <select id="sort-select">
+            <option value="name">Sort by name</option>
+            <option value="lifespan">Sort by lifespan</option>
+            <option value="weight">Sort by weight</option>
+          </select>
+
+          <button id="toggle-order" class="btn btn-secondary" type="button">
+            Ascending
+          </button>
+        </div>
+      </section>
+
+      <section class="list-section" id="breed-grid-section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">All Breeds</p>
+            <h2>Browse the directory</h2>
+          </div>
+          <button id="refresh-btn" class="btn btn-secondary" type="button">
+            Refresh
+          </button>
+        </div>
+
+        <div id="breed-grid" class="breed-grid"></div>
+      </section>
     </main>
 
     <div id="site-footer"></div>
-    <script type="module" src="/js/main.js"></script>
+    <script type="module" src="/js/breeds.js"></script>
 </body>
 </html>
