@@ -4,6 +4,7 @@
     --tertiary:#124559;
     --accent:#FE5F55;
     --dark:#01161E;
+    --nav: rgba(11, 133, 240, 0.45);
 }
 
 * {
@@ -58,8 +59,11 @@ nav a:hover {
     color: #d85a30;
 }
  
-nav a.active {
-    font-weight: bold;
+.nav-links a.active {
+    font-weight: 900;
+    color: #ddd;
+    background-color: #124559;
+    border-radius: 0% 40% ;
 }
 
 .nav-links {

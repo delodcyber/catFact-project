@@ -9,10 +9,39 @@ export async function loadPartial(id, path) {
     }
 }
 
+const currentPath = window.location.pathname;
+
+document.querySelectorAll('.nav-links a').forEach((link) => {
+    link.classList.remove('active');
+    const href = link.getAttribute('href');
+    
+    // Match exactly, or match home page
+    if (
+        href === currentPath ||
+        (currentPath === '/' && href === '/index.html') ||
+        currentPath.includes(href.replace('.html', ''))
+    ) {
+        link.classList.add('active');
+    }
+});
+
 export async function loadAllPartials() {
     await loadPartial('site-head', '/partials/head.html');
     await loadPartial('site-header', '/partials/header.html');
     await loadPartial('site-footer', '/partials/footer.html');
+
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-links a').forEach((link) => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (
+            href === currentPath ||
+            (currentPath === '/' && href === '/index.html') ||
+            currentPath.includes(href.replace('.html', ''))
+        ) {
+            link.classList.add('active');
+        }
+    });
 }
 
 export function setupHamburger() {
