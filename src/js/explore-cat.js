@@ -275,7 +275,6 @@ async function loadCats() {
     try {
         showLoading();
 
-        // Load first 16 images (2 pages of 8) for the initial gallery
         const [featured, firstPage, secondPage, breeds] = await Promise.all([
             fetchFeaturedCat(),
             fetchCatGallery(1),
@@ -283,16 +282,32 @@ async function loadCats() {
             fetchAllBreeds()
         ]);
 
-        renderFeaturedCat(featured);
         renderBreedOptions(breeds);
-
-        // Render first 16 images together
         renderGallery(firstPage, false);
         renderGallery(secondPage, true);
-
-        galleryPage = 2;    // next See More click will fetch page 3
-
+        galleryPage = 2;
         showSeeMoreButton();
+
+        // If the random featured cat has no breed, re-fetch using the first breed
+        if (!featured.breeds || featured.breeds.length === 0) {
+            const firstBreed = breeds[0];
+            currentBreedId = firstBreed.id;
+
+            const breedFeatured = await fetchFeaturedCat();
+
+            // Attach breed data manually if API still returns no breeds
+            if (!breedFeatured.breeds || breedFeatured.breeds.length === 0) {
+                breedFeatured.breeds = [firstBreed];
+            }
+
+            renderFeaturedCat(breedFeatured);
+
+            // Sync the dropdown to match
+            const select = document.getElementById('breed-select');
+            select.value = firstBreed.id;
+        } else {
+            renderFeaturedCat(featured);
+        }
 
     } catch (err) {
         console.error('Error loading cats:', err);
@@ -300,7 +315,6 @@ async function loadCats() {
         hideLoading();
     }
 }
-
 
 // ─── ENTRY POINT ─────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
