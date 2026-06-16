@@ -307,7 +307,7 @@ nav a.active {
 }
 
 .newsletter-header p{
-    color:#666;
+    color:(var(--dark));
 }
 
 .newsletter-btn{
@@ -427,51 +427,108 @@ footer{
         font-size:2rem;
     }
 
-/* ─── RESPONSIVE ─────────────────────────────────────────────────── */
+/* ─── NAVIGATION ────────────────────── */
 @media (max-width: 768px) {
- 
-    /* Navbar — show hamburger, hide nav links by default */
-    .hamburger {
+
+    .navbar {
         display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
- 
-    .nav-links {
+
+    .logo {
+        order: 2;
+    }
+
+    .logo img {
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+    }
+
+    .logo h1 {
         display: none;
+    }
+
+    .hamburger {
+        order: 1;
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        gap: 0;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
+        gap: 5px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    .hamburger span {
+        width: 28px;
+        height: 3px;
         background-color: var(--tertiary);
-        padding: 1rem 0;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 2px;
+        display: block;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* Nav overlay */
+    .nav-links {
+        position: absolute;
+        bottom: -8%;
+        right: -15%;
+        width: 20%;
+        height: 40%;
+        pointer-events: none;
+        list-style: none;
+        margin: 30px;
+        padding: 0;
         z-index: 999;
     }
- 
-    /* Nav links slide open when hamburger is toggled */
-    .nav-links.open {
-        display: flex;
-    }
- 
+
+    /* Each item sits at the hamburger corner by default */
     .nav-links li {
-        width: 100%;
+        position: absolute;
+        bottom: var(--origin-y, 24px);
+        right: var(--origin-x, 24px);
+        opacity: 0;
+        transform: translate(0, 0) scale(0.4);
+        transition: transform 0.50s cubic-bezier(0.34, 1.56, 0.64, 1),
+                    opacity 0.25s ease;
+        pointer-events: none;
+        width: auto;
     }
- 
+
+    .nav-links.open li {
+        opacity: 1;
+        pointer-events: all;
+        transform: translate(calc(var(--tx) * 1px), calc(var(--ty) * 1px)) scale(1);
+    }
+
+    /* Circular buttons */
     .nav-links a {
-        display: block;
-        padding: 0.85rem 2rem;
-        border-radius: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 85px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--secondary);
+        font-size: 0.70rem;
+        font-weight: 700;
+        text-decoration: none;
+        text-align: center;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        transition: background 0.2s ease;
+        border: none;
     }
- 
-    .nav-links a.active {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-        border-left: 3px solid var(--secondary);
-        padding-left: calc(2rem - 3px);
+
+    .nav-links a:hover {
+        background: var(--tertiary);
     }
- 
+
     /* Hero */
     .slide-content h1 {
         font-size: 2rem;
