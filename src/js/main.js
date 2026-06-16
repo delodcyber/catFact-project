@@ -134,10 +134,44 @@ async function loadCats() {
     hideLoading();
   }
 }
+/* NEWSLETTER FUNCTION */
+function setupNewsletter() {
+
+  const toggleBtn = document.getElementById('newsletter-toggle');
+  const wrapper = document.getElementById('newsletter-form-wrapper');
+  const form = document.getElementById('newsletter-form');
+  const message = document.getElementById('newsletter-message');
+
+  if (!toggleBtn || !wrapper) return;
+
+  toggleBtn.addEventListener('click', () => {
+
+    wrapper.classList.toggle('open');
+
+    toggleBtn.textContent =
+      wrapper.classList.contains('open')
+        ? 'Hide Form'
+        : 'Join Newsletter';
+  });
+
+  form?.addEventListener('submit', (e) => {
+
+    e.preventDefault();
+
+    const name =
+      document.getElementById('subscriber-name').value;
+
+    message.textContent =
+      `Thanks ${name}! You're now subscribed to CatFacts Weekly.`;
+
+    form.reset();
+  });
+}
 
 // Single DOMContentLoaded — entry point
 document.addEventListener('DOMContentLoaded', async () => {
   await loadAllPartials();
   setupHamburger();
   await loadCats();
+  setupNewsletter()
 });
