@@ -48,11 +48,6 @@ async function fetchCatGallery(page = 1) {
 
 
 // ─── FETCH: cat fact (catfact.ninja) ─────────────────────────────────────────
-async function fetchCatFact() {
-    const response = await fetch('https://catfact.ninja/fact');
-    const data = await response.json();
-    return data.fact;
-}
 
 
 // ─── FETCH: all breeds (for search dropdown) ─────────────────────────────────
@@ -67,27 +62,73 @@ async function fetchAllBreeds() {
 
 // ─── RENDER: featured image + sync dropdown ───────────────────────────────────
 function renderFeaturedCat(catObject) {
+
     document.getElementById('cat-image').src = catObject.url;
 
-    // If the returned image has breed info, sync the dropdown to match
+    renderCatInfo(catObject);
+
     const select = document.getElementById('breed-select');
+
     if (catObject.breeds && catObject.breeds.length > 0) {
         const breedId = catObject.breeds[0].id;
         select.value = breedId;
         currentBreedId = breedId;
     } else {
-        // Random cat with no breed info — reset dropdown to "All Breeds"
         select.value = '';
         currentBreedId = '';
     }
 }
 
 
-// ─── RENDER: cat fact ─────────────────────────────────────────────────────────
-function renderFact(fact) {
-    document.getElementById('cat-fact').textContent = fact;
-}
+// ─── RENDER: CATFACT INFO ─────────────────────────────────────────────────────────
+function renderCatInfo(catObject) {
 
+    const breed = catObject.breeds?.[0];
+
+    if (!breed) {
+
+        document.getElementById('breed-name').textContent =
+            'Unknown Cat';
+
+        document.getElementById('breed-description').textContent =
+            'This image is not associated with a specific breed in The Cat API database.';
+
+        document.getElementById('breed-origin').textContent = '-';
+        document.getElementById('breed-temperament').textContent = '-';
+        document.getElementById('breed-lifespan').textContent = '-';
+        document.getElementById('breed-weight').textContent = '-';
+        document.getElementById('breed-intelligence').textContent = '-';
+        document.getElementById('breed-energy').textContent = '-';
+
+        return;
+    }
+
+    document.getElementById('breed-name').textContent =
+        breed.name;
+
+    document.getElementById('breed-description').textContent =
+        breed.description || 'No description available.';
+
+    document.getElementById('breed-origin').textContent =
+        breed.origin || '-';
+
+    document.getElementById('breed-temperament').textContent =
+        breed.temperament || '-';
+
+    document.getElementById('breed-lifespan').textContent =
+        breed.life_span || '-';
+
+    document.getElementById('breed-weight').textContent =
+        breed.weight?.metric
+            ? `${breed.weight.metric} kg`
+            : '-';
+
+    document.getElementById('breed-intelligence').textContent =
+        breed.intelligence ?? '-';
+
+    document.getElementById('breed-energy').textContent =
+        breed.energy_level ?? '-';
+}
 
 // ─── RENDER: gallery (append or replace) ─────────────────────────────────────
 function renderGallery(images, append = false) {
@@ -181,15 +222,13 @@ function setupBreedSearch() {
 
         showLoading();
 
-        const [featured, gallery, fact] = await Promise.all([
+        const [featured, gallery] = await Promise.all([
             fetchFeaturedCat(),
             fetchCatGallery(1),
-            fetchCatFact()
         ]);
 
         renderFeaturedCat(featured);
         renderGallery(gallery, false);
-        renderFact(fact);
 
         // Show or hide See More based on what came back
         if (gallery.length < 8) {
@@ -216,13 +255,11 @@ function setupDiscoverButton() {
         showLoading();
 
         try {
-            const [featured, fact] = await Promise.all([
+            const [featured] = await Promise.all([
                 fetchFeaturedCat(),
-                fetchCatFact()
             ]);
 
             renderFeaturedCat(featured);
-            renderFact(fact);
 
         } catch (err) {
             console.error('Error discovering new cat:', err);
@@ -239,16 +276,14 @@ async function loadCats() {
         showLoading();
 
         // Load first 16 images (2 pages of 8) for the initial gallery
-        const [featured, firstPage, secondPage, fact, breeds] = await Promise.all([
+        const [featured, firstPage, secondPage, breeds] = await Promise.all([
             fetchFeaturedCat(),
             fetchCatGallery(1),
             fetchCatGallery(2),
-            fetchCatFact(),
             fetchAllBreeds()
         ]);
 
         renderFeaturedCat(featured);
-        renderFact(fact);
         renderBreedOptions(breeds);
 
         // Render first 16 images together

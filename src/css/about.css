@@ -20,6 +20,12 @@
   color:var(--dark);
 }
 
+.about-story, .about-credits{
+  background:white;
+  padding:1.5rem;
+  border-radius:12px;
+  border-left:5px solid var(--primary);
+}
 /* sections spacing */
 .about-story,
 .about-features,
