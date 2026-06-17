@@ -404,11 +404,10 @@ footer {
 /* ─── MOBILE ─────────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
     body {
-        padding: 0;
-        margin: 0;
+        width: 100%;
     }
     header {
-        padding: 33px 0px 50px 30px;
+        padding: 33px 0px 55px 30px;
     }
     /* Navbar */
     .navbar {
