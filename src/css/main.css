@@ -405,7 +405,7 @@ footer {
 @media (max-width: 768px) {
     header {
         margin: 0;
-        padding: 40px 0px 28px 30px;
+        padding: 40px 0px 35px 30px;
     }
     /* Navbar */
     .navbar {
@@ -454,7 +454,7 @@ footer {
 
     .nav-links {
         position: absolute;
-        bottom: -19%;
+        bottom: -22%;
         right: -27%;
         width: 20%;
         height: 40%;
