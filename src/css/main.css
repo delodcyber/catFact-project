@@ -405,6 +405,7 @@ footer {
 @media (max-width: 768px) {
     body {
         width: 100%;
+        overflow: hidden;
     }
     header {
         padding: 33px 0px 55px 30px;
