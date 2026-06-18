@@ -23,9 +23,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "src/index.html"),
-        "explore-cats": resolve(__dirname, "src/explore-cats/explore-cat.html"),
-        breeds: resolve(__dirname, "src/breeds/breeds.html"),
-        favorites: resolve(__dirname, "src/about/about.html")
+        "explore-cats": resolve(__dirname, "src/pages/explore-cat.html"),
+        breeds: resolve(__dirname, "src/pages/breeds.html"),
+        favorites: resolve(__dirname, "src/pages/about.html")
       },
     },
   },
