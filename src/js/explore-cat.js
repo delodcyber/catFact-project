@@ -1,6 +1,6 @@
 import { loadAllPartials, setupHamburger } from './partials';
 
-const CAT_API_KEY = 'live_pKg7az242OM2J74UFGGEEiidBpX4ObIQ1xByBjh73T1GCeGDjZ2WLf0CeYoptHwX';
+const CAT_API_KEY = import.meta.env.VITE_CAT_API_KEY;
 
 // ─── STATE ───────────────────────────────────────────────────────────────────
 let galleryPage = 1;
