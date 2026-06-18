@@ -7,6 +7,7 @@ let galleryPage = 1;
 let isLoading = false;
 let currentBreedId = '';       // empty = all breeds
 let noMoreCats = false;        // true when the API returns no more images
+let cachedBreeds = [];         // cached after initial load
 
 
 // ─── SPINNER ─────────────────────────────────────────────────────────────────
@@ -73,10 +74,11 @@ function renderFeaturedCat(catObject) {
         const breedId = catObject.breeds[0].id;
         select.value = breedId;
         currentBreedId = breedId;
-    } else {
+    } else if (!currentBreedId) {
+        // Only reset to "All Breeds" if no breed filter is active
         select.value = '';
-        currentBreedId = '';
     }
+    // If currentBreedId is set but the image has no breed metadata, leave the dropdown alone
 }
 
 
@@ -227,6 +229,14 @@ function setupBreedSearch() {
             fetchCatGallery(1),
         ]);
 
+        // If the image came back without breed metadata, attach it from the cache
+        if (currentBreedId && (!featured.breeds || featured.breeds.length === 0)) {
+            const matchedBreed = cachedBreeds.find(b => b.id === currentBreedId);
+            if (matchedBreed) {
+                featured.breeds = [matchedBreed];
+            }
+        }
+
         renderFeaturedCat(featured);
         renderGallery(gallery, false);
 
@@ -281,6 +291,8 @@ async function loadCats() {
             fetchCatGallery(2),
             fetchAllBreeds()
         ]);
+
+        cachedBreeds = breeds;
 
         renderBreedOptions(breeds);
         renderGallery(firstPage, false);
